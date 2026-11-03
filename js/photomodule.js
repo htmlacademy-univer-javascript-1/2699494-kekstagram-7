@@ -1,4 +1,5 @@
 import { photos } from './data.js';
+import { openBigPicture } from './mainphoto.js';
 
 const picturesBlock = document.querySelector('.pictures');
 const template = document.querySelector('#picture').content.querySelector('.picture');
@@ -12,6 +13,11 @@ function create(photo) {
 
   element.querySelector('.picture__likes').textContent = photo.likes;
   element.querySelector('.picture__comments').textContent = photo.comments.length;
+
+  element.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    openBigPicture(photo);
+  });
 
   return element;
 }
@@ -27,4 +33,4 @@ function render() {
   picturesBlock.appendChild(fragment);
 }
 
-render();
+export { render };
